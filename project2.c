@@ -3,11 +3,17 @@
 #include <stdlib.h> //For exit()
 #include <stdbool.h> //for boolean flags
 
+//Function prototypes
+void read_lines(FILE *fd_in, FILE *fd_out);
+
+// *******************
+
+
 int main(int argc, char *argv[])
 {
   bool ikeep_go = true; //to escape interactive mode
-  bool fkeep_go = true; // to escape file mode
-  char *path = "/bin"; //initial shell path
+  // bool fkeep_go = true; // to escape file mode
+  //  char *path = "/bin"; //initial shell path
   
   if(argc > 2)
     {
@@ -19,7 +25,8 @@ int main(int argc, char *argv[])
       while(ikeep_go)
 	{
 	  printf("wish> ");
-	  getline(&i_line, &i_size, stdin);
+	  read_lines(stdin, stdout);
+	  exit(0);
 	  
 	}
       exit(0); //Called exit function.
@@ -41,6 +48,10 @@ void read_lines(FILE *fd_in, FILE *fd_out)
 {
   char *line = NULL; //The line we read. 
   size_t size = 0; //line size. getline uses ralloc
+
+   getline(&line, &size, fd_in);
+   printf("You entered: \n %s", line);
+   return;
 }
 
 void exec_cmnds(char **cmnds)
