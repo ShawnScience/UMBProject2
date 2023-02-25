@@ -4,8 +4,8 @@ all : project2
 GCC := gcc -o
 args := -Wall -Werror
 
-projec2: project2.c
-	$GCC $@ $? $args
+project2: project2.c
+	$(GCC) $@ $? $(args)
 
 .PHONY : clean
 clean :
